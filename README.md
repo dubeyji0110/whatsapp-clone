@@ -1,7 +1,7 @@
 # Getting Started with Whatsapp Clone
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Instagram Clone developed by [Devansh Dubey](https://github.com/dubyeji0110) using ReactJS and deployed on firebase.
+Whatsapp Clone developed by [Devansh Dubey](https://github.com/dubyeji0110) using ReactJS and deployed on firebase.
 
 ## Available Scripts
 
