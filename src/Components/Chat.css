@@ -1,11 +1,11 @@
 .chat {
-	flex: 65%;
+	flex: 70%;
 	display: flex;
 	flex-direction: column;
 }
 
 .chat__header {
-	padding: 10px 20px;
+	padding: 8px 20px;
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid lightgray;
@@ -17,7 +17,8 @@
 }
 
 .chat__headerInfo > h3 {
-	font-weight: 500;
+	font-weight: 400;
+	font-size: 16;
 }
 
 .chat__headerInfo > p {
@@ -28,6 +29,10 @@
 	display: flex;
 	justify-content: space-between;
 	min-width: 100px;
+}
+
+.chat__headerRight .MuiSvgIcon-root{
+	color: #9e9e9e;
 }
 
 .chat__body {
@@ -86,15 +91,16 @@
 	padding: 10px;
 	border: none;
 }
-.chat__footer > form > input:focus {
-	box-shadow: 0 1px 4px rgba(32, 33, 36, 0.28);
-}
 
 .chat__footer > form > button {
 	display: none;
 }
 
-.chat__footer > .MuiSvgIcon-root {
-	padding: 10px;
-	color: gray;
+.chat__footer  .MuiSvgIcon-root {
+	color: #9e9e9e;
+	font-size: 1.7rem;
+}
+
+.chat__footer > Button:nth-child(2){
+	transform: rotate(45deg);
 }

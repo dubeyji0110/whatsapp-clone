@@ -28,3 +28,18 @@
 		margin-top: 0;
 	}
 }
+
+.fill{
+	height: 100%;
+	width: 100%;
+	flex: 70%;
+	display: grid;
+	place-items: center;
+	background: #f8f9fb;
+}
+
+.fill > h1{
+	font-weight: 300;
+	font-size: 36px;
+	margin-top: -170px;
+}

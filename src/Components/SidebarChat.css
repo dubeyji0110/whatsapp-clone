@@ -1,20 +1,26 @@
-.sidebarChat{
-    display: flex;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-bottom: 1px solid #f6f6f6;
-    align-items: center;
+.sidebarChat {
+	display: flex;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-bottom: 1px solid #f6f6f6;
+	align-items: center;
 }
 
-.sidebarChat:hover{
-    background: #ebebeb;
+.sidebarChat:hover {
+	background: #ebebeb;
 }
 
-.sidebarChat__info{
-    margin-left: 15px;
+.sidebarChat__info {
+	margin-left: 15px;
 }
 
-.sidebarChat__info > h2{
-    font-size: 16px;
-    margin-top: 8px;
+.sidebarChat__info > h2 {
+	font-size: 16px;
+	margin-top: 8px;
+	color: #000;
+	font-weight: 500;
+}
+
+.sidebarChat__info > p {
+	color: #7a7a7a;
 }
