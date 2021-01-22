@@ -41,7 +41,7 @@ function SidebarChat({ addNewChat, id, name }) {
 					src={`https://avatars.dicebear.com/api/human/${seed}.svg`}
 				/>
 				<div className='sidebarChat__info'>
-					<h2>{name}</h2>
+					<h2>{name.slice(0, 15)}</h2>
 					<p>{messages[0]?.message.slice(0, 20)}...</p>
 				</div>
 			</div>
