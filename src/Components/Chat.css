@@ -42,6 +42,7 @@
 	background-position: center;
 	padding: 30px;
 	overflow-y: scroll;
+	overflow-wrap: anywhere;
 }
 
 .chat__message {
