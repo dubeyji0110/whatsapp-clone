@@ -4,12 +4,15 @@
 }
 
 ::-webkit-scrollbar{
-  width: 3px;
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track{
+  background: #eeeeee;
 }
 
 ::-webkit-scrollbar-thumb{
-  height: 2rem;
-  color: darkgray;
+  background: #1e1e24;
 }
 
 input:focus{

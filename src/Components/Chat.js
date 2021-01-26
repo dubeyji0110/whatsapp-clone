@@ -6,7 +6,7 @@ import {
 	SearchOutlined,
 } from "@material-ui/icons";
 import { Avatar, IconButton } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import firebase from "firebase";
 import { useStateValue } from "../StateProvider";
@@ -20,6 +20,7 @@ function Chat() {
 	const [messages, setMessages] = useState([]);
 	const [{ user }, dispatch] = useStateValue();
 	const { roomId } = useParams();
+	const dummy = useRef();
 
 	useEffect(() => {
 		if (roomId) {
@@ -50,6 +51,7 @@ function Chat() {
 		});
 
 		setInput("");
+		dummy.current.scrollIntoView({ behavior: "smooth" });
 	};
 
 	return (
@@ -62,9 +64,13 @@ function Chat() {
 					<h3>{roomName}</h3>
 					<p>
 						last seen{" "}
-						{
-							messages.length ?  new Date(messages[messages.length - 1]?.timestamp?.toDate()).toUTCString() : "never"
-						}
+						{messages.length
+							? new Date(
+									messages[
+										messages.length - 1
+									]?.timestamp?.toDate()
+							  ).toUTCString()
+							: "never"}
 					</p>
 				</div>
 				<div className='chat__headerRight'>
@@ -80,8 +86,9 @@ function Chat() {
 				{messages.map((message) => (
 					<p
 						className={`chat__message ${
-							message.name === user.displayName &&
-							"chat__reciever"
+							message.name === user.displayName
+								? "chat__reciever"
+								: ""
 						}`}>
 						<span className='chat__name'>{message.name}</span>
 						{message.message}
@@ -92,6 +99,7 @@ function Chat() {
 						</span>
 					</p>
 				))}
+				<span ref={dummy}></span>
 			</div>
 			<div className='chat__footer'>
 				<IconButton>
