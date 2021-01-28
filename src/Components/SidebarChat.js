@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Avatar } from "@material-ui/core";
 import "./SidebarChat.css";
 import db from "../firebase";
+import { AddCircleOutline, Delete } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import { AddCircleOutline } from "@material-ui/icons";
 
 function SidebarChat({ addNewChat, id, name }) {
 	const [seed, setSeed] = useState("");
@@ -34,6 +34,18 @@ function SidebarChat({ addNewChat, id, name }) {
 		}
 	};
 
+	const deleteRoom = () => {
+		db.collection("rooms")
+			.doc(id)
+			.delete()
+			.then(() => {
+				alert("Room deleted!");
+			})
+			.catch((err) => {
+				alert(err.message);
+			});
+	};
+
 	return !addNewChat ? (
 		<Link to={`/rooms/${id}`}>
 			<div className='sidebarChat'>
@@ -44,6 +56,12 @@ function SidebarChat({ addNewChat, id, name }) {
 					<h2>{name.slice(0, 15)}</h2>
 					<p>{messages[0]?.message.slice(0, 20)}...</p>
 				</div>
+				<span
+					className='deleteRoom'
+					title='Delete room'
+					onClick={deleteRoom}>
+					<Delete />
+				</span>
 			</div>
 		</Link>
 	) : (

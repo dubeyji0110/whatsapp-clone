@@ -1,5 +1,6 @@
 import {
 	AttachFile,
+	Delete,
 	InsertEmoticon,
 	Mic,
 	MoreVert,
@@ -26,14 +27,28 @@ function Chat() {
 		if (roomId) {
 			db.collection("rooms")
 				.doc(roomId)
-				.onSnapshot((snapshot) => setRoomName(snapshot.data().name));
-			db.collection("rooms")
-				.doc(roomId)
-				.collection("messages")
-				.orderBy("timestamp", "asc")
-				.onSnapshot((snapshot) =>
-					setMessages(snapshot.docs.map((doc) => doc.data()))
-				);
+				.get()
+				.then((doc) => {
+					if (doc.exists) {
+						db.collection("rooms")
+							.doc(roomId)
+							.onSnapshot((snapshot) => {
+								setRoomName(snapshot.data().name);
+							});
+						db.collection("rooms")
+							.doc(roomId)
+							.collection("messages")
+							.orderBy("timestamp", "asc")
+							.onSnapshot((snapshot) =>
+								setMessages(
+									snapshot.docs.map((doc) => ({
+										id: doc.id,
+										...doc.data(),
+									}))
+								)
+							);
+					}
+				});
 		}
 	}, [roomId]);
 
@@ -54,6 +69,20 @@ function Chat() {
 		dummy.current.scrollIntoView({ behavior: "smooth" });
 	};
 
+	const deleteMsg = (id) => {
+		db.collection("rooms")
+			.doc(roomId)
+			.collection("messages")
+			.doc(id)
+			.delete()
+			.then(() => {
+				alert("Message Deleted!");
+			})
+			.catch((err) => {
+				alert(err.message);
+			});
+	};
+
 	return (
 		<div className='chat'>
 			<div className='chat__header'>
@@ -61,7 +90,7 @@ function Chat() {
 					src={`https://avatars.dicebear.com/api/human/${seed}.svg`}
 				/>
 				<div className='chat__headerInfo'>
-					<h3>{roomName}</h3>
+					<h3>{roomName ? roomName : 'Room Deleted'}</h3>
 					<p>
 						last seen{" "}
 						{messages.length
@@ -91,6 +120,12 @@ function Chat() {
 								: ""
 						}`}>
 						<span className='chat__name'>{message.name}</span>
+						<span
+							title='Delete chat'
+							className='delete'
+							onClick={() => deleteMsg(message.id)}>
+							<Delete />
+						</span>
 						{message.message}
 						<span className='chat__timestamp'>
 							{new Date(
@@ -114,9 +149,11 @@ function Chat() {
 						onChange={(e) => setInput(e.target.value)}
 						type='text'
 						placeholder='Type a message'
-						autoFocus
 					/>
-					<button onClick={sendMessage} type='submit'>
+					<button
+						disabled={!input}
+						onClick={sendMessage}
+						type='submit'>
 						Send a Message
 					</button>
 				</form>

@@ -12,6 +12,12 @@
 
 .sidebarChat__info {
 	margin-left: 15px;
+	flex: 1;
+}
+
+.deleteRoom > .MuiSvgIcon-root{
+	font-size: 1.2rem;
+	color: #000;
 }
 
 .sidebarChat__info > h2 {
