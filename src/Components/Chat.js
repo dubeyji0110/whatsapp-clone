@@ -90,7 +90,7 @@ function Chat() {
 					src={`https://avatars.dicebear.com/api/human/${seed}.svg`}
 				/>
 				<div className='chat__headerInfo'>
-					<h3>{roomName ? roomName : 'Room Deleted'}</h3>
+					<h3>{roomName ? roomName : "Room Deleted"}</h3>
 					<p>
 						last seen{" "}
 						{messages.length
@@ -124,7 +124,11 @@ function Chat() {
 							title='Delete chat'
 							className='delete'
 							onClick={() => deleteMsg(message.id)}>
-							<Delete />
+							{message.name === user.displayName ? (
+								<Delete />
+							) : (
+								""
+							)}
 						</span>
 						{message.message}
 						<span className='chat__timestamp'>

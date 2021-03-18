@@ -32,7 +32,7 @@
 	min-width: 100px;
 }
 
-.chat__headerRight .MuiSvgIcon-root{
+.chat__headerRight .MuiSvgIcon-root {
 	color: #9e9e9e;
 }
 
@@ -65,15 +65,16 @@
 	font-weight: 800;
 }
 
-.delete{
+.delete {
 	position: absolute;
 	top: -16px;
 	right: 2px;
 	cursor: pointer;
 }
 
-.delete > .MuiSvgIcon-root{
+.delete > .MuiSvgIcon-root {
 	font-size: 1rem;
+	color: #6d6d6d;
 }
 
 .chat__timestamp {
@@ -110,11 +111,11 @@
 	display: none;
 }
 
-.chat__footer  .MuiSvgIcon-root {
+.chat__footer .MuiSvgIcon-root {
 	color: #9e9e9e;
 	font-size: 1.7rem;
 }
 
-.chat__footer > Button:nth-child(2){
+.chat__footer > Button:nth-child(2) {
 	transform: rotate(45deg);
 }
